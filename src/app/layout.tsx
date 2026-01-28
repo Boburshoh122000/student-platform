@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   keywords: ["career", "resume builder", "jobs tashkent", "internships", "student jobs", "cv maker"],
 };
 
+import { GamificationProvider } from '@/context/GamificationContext';
 import { ApplicationProvider } from '@/context/ApplicationContext';
 
 export default function RootLayout({
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${outfit.variable} antialiased`}>
-        <ApplicationProvider>
-          {children}
-        </ApplicationProvider>
+        <GamificationProvider>
+          <ApplicationProvider>
+            {children}
+          </ApplicationProvider>
+        </GamificationProvider>
       </body>
     </html>
   );

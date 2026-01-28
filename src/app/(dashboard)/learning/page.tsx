@@ -3,24 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { TargetRole, LearningPlan, LearningWeek, LearningTask } from '@/types/learning';
 import { generateLearningPlan } from '@/lib/learning-generator';
+import { useGamification } from '@/context/GamificationContext';
 
 const ROLES: TargetRole[] = ['Frontend Developer', 'UX Designer', 'Product Manager', 'Data Analyst'];
 
 export default function LearningPage() {
   const [activePlan, setActivePlan] = useState<LearningPlan | null>(null);
   const [loading, setLoading] = useState(false);
+  const { addXP } = useGamification();
 
-  // Load from local storage
-  useEffect(() => {
-    const saved = localStorage.getItem('career-os-learning-plan');
-    if (saved) {
-      try {
-        setActivePlan(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to load plan", e);
-      }
-    }
-  }, []);
+  // ... useEffects
 
   // Save to local storage
   useEffect(() => {
@@ -46,10 +38,18 @@ export default function LearningPage() {
       if (week.id !== weekId) return week;
       const updatedTasks = week.tasks.map(task => {
         if (task.id !== taskId) return task;
+        
+        // GAMIFICATION: Award XP if completing
+        if (!task.isCompleted) {
+            addXP(20);
+        }
+        
         return { ...task, isCompleted: !task.isCompleted };
       });
       return { ...week, tasks: updatedTasks };
     });
+    
+    // ... rest of logic
 
     const totalTasks = updatedWeeks.reduce((acc, w) => acc + w.tasks.length, 0);
     const completedTasks = updatedWeeks.reduce((acc, w) => acc + w.tasks.filter(t => t.isCompleted).length, 0);

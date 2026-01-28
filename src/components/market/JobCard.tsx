@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Job } from '@/types/job';
+import { useGamification } from '@/context/GamificationContext';
 import { useApplications } from '@/context/ApplicationContext';
 import TailoringModal from '@/components/tracker/TailoringModal';
 
 export default function JobCard({ job }: { job: Job }) {
   const { applications, addApplication } = useApplications();
+  const { addXP } = useGamification();
   const [showModal, setShowModal] = useState(false);
 
   const existingApp = applications.find(a => a.jobId === job.id);
@@ -17,6 +19,7 @@ export default function JobCard({ job }: { job: Job }) {
 
   const executeApply = () => {
     addApplication(job.id, job.title, job.company, job.location);
+    addXP(50); // Gamification Reward
     setShowModal(false);
   };
 
