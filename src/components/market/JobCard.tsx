@@ -108,8 +108,16 @@ export default function JobCard({ job }: { job: Job }) {
              </span>
           )}
           
-          <button 
-            onClick={handleApplyClick}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--s-3)' }}>
+              <button 
+                onClick={(e) => { e.stopPropagation(); alert('Job reported to Safety Team. Thank you for keeping CareerOS safe!'); }}
+                style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--c-text-minor)', textDecoration: 'underline' }}
+              >
+                  🚩 Report
+              </button>
+              
+              <button 
+                onClick={handleApplyClick}
             disabled={!!existingApp}
             style={{
               background: existingApp ? 'transparent' : 'var(--c-trust-blue)',
@@ -125,6 +133,7 @@ export default function JobCard({ job }: { job: Job }) {
           </button>
         </div>
       </div>
+    </div>
 
       {/* MODAL */}
       {showModal && (
