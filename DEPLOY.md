@@ -1,54 +1,37 @@
-# Deployment Guide 🚀
+# 🚀 Deployment Guide: Railway
 
-The **CareerOS** MVP is built with Next.js and is fully static/client-side compatible (using LocalStorage for data), making it extremely easy to deploy to Vercel or Netlify.
+Since we are encountering local permission errors, the easiest way to get the backend running is to **Deploy to Railway**. Railway will handle the installation and database setup automatically.
 
-## Option 1: Vercel (Recommended)
+## Step 1: Push Code to GitHub
+Ensure all your latest changes are pushed.
+```bash
+git add .
+git commit -m "feat: backend foundation with prisma and auth"
+git push origin main
+```
 
-Vercel is the creators of Next.js and offers the best integration.
+## Step 2: Create Railway Project
+1.  Log in to [Railway.app](https://railway.app/).
+2.  Click **"New Project"** → **"Deploy from GitHub repo"**.
+3.  Select your repository: `student-platform`.
+4.  Click **"Deploy Now"**.
 
-### Steps:
-1.  **Push to GitHub**:
-    -   Ensure your code is committed and pushed to a GitHub repository.
-    
-2.  **Login to Vercel**:
-    -   Go to [vercel.com](https://vercel.com) and sign up/login.
+## Step 3: Add Database (PostgreSQL)
+1.  In your Railway project view, click **"New"** (top right) → **"Database"** → **"Add PostgreSQL"**.
+2.  Wait for it to initialize (10-20 seconds).
 
-3.  **Import Project**:
-    -   Click "Add New..." -> "Project".
-    -   Select your `career-os` repository from the list.
+## Step 4: Connect App to Database
+1.  Click on the **PostgreSQL** card → **Variables**.
+2.  Copy the `DATABASE_URL` value.
+3.  Click on your **Next.js App** card → **Settings** → **Variables**.
+4.  Add a new variable: `DATABASE_URL` and paste the value.
+5.  Add another variable: `AUTH_SECRET` (You can generate one by running `npx auth secret` locally, or just use a random long string like `my-secret-key-123456789`).
 
-4.  **Configure**:
-    -   **Framework Preset**: Next.js (Should be auto-detected).
-    -   **Root Directory**: `./` (Default).
-    -   **Environment Variables**: *None needed for MVP*.
+## Step 5: Redeploy
+Railway mimics a "Push" event, so it should automatically rebuild. If not, go to **Deployments** and click **Redeploy**.
 
-5.  **Deploy**:
-    -   Click **Deploy**.
-    -   Wait ~1 minute for the build to finish.
-    -   **Success!** Your app is live at `https://your-project.vercel.app`.
-
-## Option 2: Netlify
-
-1.  **Push to GitHub**.
-2.  **Login to Netlify**.
-3.  **New Site from Git**: Select GitHub and your repo.
-4.  **Build Settings**:
-    -   **Build Command**: `npm run build`
-    -   **Publish Directory**: `.next` (Netlify usually handles Next.js automatically).
-5.  **Deploy Site**.
-
-## Troublshooting
-
-### "Build Failed" (Type Errors)
-If the build fails due to TypeScript errors:
-1.  Check the logs in Vercel.
-2.  Run `npm run build` locally to reproduce.
-3.  Fix the error (usually strict null checks) and push again.
-
-### "Images not loading"
--   Ensure all images used in `src/app/page.tsx` or `src/components/*` are in the `public/` folder.
--   Use absolute paths starting with `/` (e.g., `/logo.png`) in your `<img>` or `<Image />` tags.
-
----
-
-**Ready for Launch!** 🚀
+## Step 6: Verify
+Open your deployed URL (e.g., `https://student-platform-production.up.railway.app`).
+-   Go to `/jobs`.
+-   It should load (it might be empty initially).
+-   To add data, you can use the Railway CLI or connect via a tool like TablePlus using the database credentials.
