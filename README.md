@@ -1,117 +1,78 @@
-# Student Career OS (Central Asia) 🚀
+# CareerOS - Student Career Platform
 
-> **The Professional Career Ecosystem for Uzbekistan & Central Asia.**
-> *Build your AI-tailored resume, find verified jobs, and track your applications—all in one place.*
+**CareerOS** is a comprehensive job market and career preparation platform tailored for students in Central Asia. It combines job searching, skill learning, AI-powered tools, and gamification to create an engaging "Career Operation System".
 
----
+![CareerOS Dashboard](https://via.placeholder.com/800x400.png?text=CareerOS+Dashboard+Preview)
 
-## 🌟 Overview
+## 🚀 Features
 
-**CareerOS** is a platform built to solve the "Chicken and Egg" problem for students (no experience -> no job) and employers (spam applications -> no trust) in Central Asia.
+### 1. Job Market
+-   **Aggregated Listings**: Find internships, part-time jobs, and entry-level roles.
+-   **Smart Filtering**: Filter by industry, verified status, and salary.
+-   **Scam Protection**: "Report Job" functionality and "Verified Employer" badges.
 
-It replaces the chaotic Telegram-based job market with a structured, verified, and professional ecosystem.
+### 2. Learning & Growth
+-   **AI Learning Plans**: Generate custom 4-week study roadmaps for roles like "Frontend Dev" or "Data Analyst".
+-   **Task Tracking**: Mark weekly tasks as complete and earn XP.
 
-### Key Features
+### 3. Application Tracker
+-   **Kanban Board**: Visualize job applications (Applied, Interview, Offer, Rejected).
+-   **Tailoring**: Manage application-specific notes and status.
 
-#### 🎓 For Candidates (Students)
--   **AI Resume Builder**: Converts profile data into a CEO-ready PDF resume.
--   **Tailoring Engine**: `TailoringModal` adapts resumes to specific JD keywords instantly.
--   **Job Market**: A searchable feed of **Verified** listings (no scams).
--   **Application Tracker**: A Kanban board (`/tracker`) to manage "Saved", "Applied", and "Interview" stages.
+### 4. AI Intelligence
+-   **Resume Builder**: Real-time ATS scoring and "Magic Rewrite" for professional summaries.
+-   **Cover Letter Generator**: Create tailored cover letters based on job descriptions (Mock AI).
 
-#### 🏢 For Employers
--   **Verification System**: Companies must submit INN/Docs to get the "Verified" badge.
--   **Standardized Applications**: receive structured candidates, not random Word docs.
+### 5. Gamification (New! 🎮)
+-   **XP System**: Earn XP for applying to jobs (+50) and learning (+20).
+-   **Levels & Streaks**: Track your daily consistency and level up your career profile.
 
-#### 🛡️ Trust & Safety (Admin)
--   **Admin Dashboard**: `/admin` interface to moderate verification requests.
--   **Anti-Scam**: Built-in reporting and manual review queues.
+### 6. Admin Panel (New! 🛡️)
+-   **Dashboard**: Monitor platform stats and activity (`/admin/dashboard`).
+-   **Verification**: Review and approve new employers (`/admin/verification`).
 
----
-
-## 🛠 Tech Stack
-
--   **Framework**: [Next.js 14/15](https://nextjs.org/) (App Router)
+## 🛠️ Tech Stack
+-   **Framework**: Next.js 14+ (App Router)
 -   **Language**: TypeScript
--   **Styling**: CSS Modules + Vanilla CSS Variables (Zero -runtime CSS).
--   **State**: React Context API + LocalStorage (MVP Persistence).
--   **Font**: [Inter](https://fonts.google.com/specimen/Inter) & [Outfit](https://fonts.google.com/specimen/Outfit).
+-   **Styling**: CSS Modules / Inline Styles (Fast Prototyping)
+-   **State**: React Context + LocalStorage Persistence
 
----
+## 🏃‍♂️ Getting Started
 
-## 🚀 Getting Started
-
-### Prerequisites
--   Node.js 18+
--   npm or pnpm
-
-### Installation
-
-1.  **Clone the repository:**
+1.  **Clone the repository**
     ```bash
-    git clone https://github.com/your-username/career-os.git
-    cd career-os
+    git clone https://github.com/Boburshoh122000/student-platform.git
+    cd student-platform
     ```
 
-2.  **Install dependencies:**
+2.  **Install dependencies**
     ```bash
     npm install
     ```
 
-3.  **Run the development server:**
+3.  **Run the development server**
     ```bash
     npm run dev
     ```
 
-4.  **Open the app:**
-    Visit [http://localhost:3000](http://localhost:3000).
-
----
+4.  **Open the app**
+    Navigate to [http://localhost:3000](http://localhost:3000).
 
 ## 📂 Project Structure
 
-```bash
+```
 src/
-├── app/                  # Next.js App Router
-│   ├── (auth)/           # Authentication routes (Login/Register stub)
-│   ├── (dashboard)/      # Main App Layout (Sidebar, Header)
-│   │   ├── jobs/         # Job Feed
-│   │   ├── tracker/      # Kanban Board
-│   │   └── resume/       # Builder
-│   ├── admin/            # Admin Panel (Layout + Queues)
-│   ├── employers/        # B2B Marketing Page
-│   └── page.tsx          # Student Landing Page
-├── components/           # Reusable UI Components
-│   ├── market/           # Job Cards, Filters
-│   ├── resume/           # Form, Preview, Toolbars
-│   ├── tracker/          # Kanban Board, Modal
-│   └── ui/               # Buttons, Inputs, Layouts
-├── context/              # Global State (Jobs, Applications, Resume)
-├── styles/               # Global CSS & Variables
-└── types/                # TypeScript Interfaces (Job, Application, Section)
+├── app/                 # Next.js App Router pages
+│   ├── (auth)/          # Login/Register routes
+│   ├── (dashboard)/     # Main student dashboard
+│   ├── admin/           # Admin panel routes
+│   └── layout.tsx       # Root layout + Providers
+├── components/          # Reusable UI components
+├── context/             # Global State (Gamification, Applications)
+├── data/                # Mock data (Jobs, Learning Plans)
+├── lib/                 # Utilities and Mock AI logic
+└── types/               # TypeScript interfaces
 ```
 
----
-
-## 📦 Deployment
-
-This project is optimized for **Vercel**.
-
-1.  Push code to GitHub.
-2.  Import project into Vercel.
-3.  Deploy (No special environment variables required for MVP).
-
-See [DEPLOY.md](./DEPLOY.md) for detailed instructions.
-
----
-
-## 🤝 Contributing
-
-This is an MVP (Minimum Viable Product). Future roadmap items include:
--   Supabase/Postgres Integration.
--   Real PDF generation (server-side).
--   Employer Dashboard (Job Posting).
-
----
-
-**Built with ❤️ for the students of Central Asia.**
+## 🛡️ License
+This project is for educational and portfolio purposes.
