@@ -1,65 +1,159 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div style={{ background: '#0f172a', minHeight: '100vh', color: 'white' }}>
+      
+      {/* NAV */}
+      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 'var(--s-4) var(--s-8)', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ fontSize: '1.25rem', fontWeight: 700, fontFamily: 'var(--font-outfit)' }}>
+          Career<span style={{ color: '#3b82f6' }}>OS</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div style={{ display: 'flex', gap: 'var(--s-6)', alignItems: 'center' }}>
+          <Link href="/jobs" style={{ color: '#94a3b8', textDecoration: 'none' }}>Find Jobs</Link>
+          <Link href="/employers" style={{ color: '#94a3b8', textDecoration: 'none' }}>For Employers</Link>
+          <Link href="/resume/builder" style={{ 
+            background: 'white', 
+            color: 'black', 
+            padding: 'var(--s-2) var(--s-4)', 
+            borderRadius: 'var(--r-full)',
+            fontWeight: 600,
+            textDecoration: 'none'
+          }}>
+            Build CV
+          </Link>
         </div>
-      </main>
+      </nav>
+
+      {/* HERO SECTION */}
+      <section style={{ textAlign: 'center', padding: 'var(--s-16) var(--s-4)', maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ 
+            display: 'inline-block', 
+            background: 'rgba(59, 130, 246, 0.1)', 
+            color: '#60a5fa', 
+            padding: '4px 12px', 
+            marginBottom: 'var(--s-6)',
+            fontSize: 'var(--fs-sm)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            borderRadius: '999px'
+        }}>
+          ✨ New: AI Resume Builder
+        </div>
+        <h1 style={{ 
+          fontSize: '4rem', 
+          fontWeight: 800, 
+          lineHeight: 1.1, 
+          marginBottom: 'var(--s-6)',
+          fontFamily: 'var(--font-outfit)',
+          background: 'linear-gradient(to right, #ffffff, #94a3b8)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}>
+          Launch Your Career in <span style={{ color: '#3b82f6', WebkitTextFillColor: '#3b82f6' }}>15 Minutes</span>.
+        </h1>
+        <p style={{ fontSize: '1.25rem', color: '#94a3b8', marginBottom: 'var(--s-10)', lineHeight: 1.6 }}>
+          The only platform in Central Asia that turns your student profile into a CEO-ready resume and connects you with verified employers. No scams. No spam.
+        </p>
+        <div style={{ display: 'flex', gap: 'var(--s-4)', justifyContent: 'center' }}>
+          <Link href="/resume/builder" style={{
+            background: '#3b82f6',
+            color: 'white',
+            padding: 'var(--s-4) var(--s-8)',
+            borderRadius: 'var(--r-full)',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)'
+          }}>
+            Start Building Free
+          </Link>
+          <Link href="/jobs" style={{
+            background: 'transparent',
+            border: '1px solid #334155',
+            color: 'white',
+            padding: 'var(--s-4) var(--s-8)',
+            borderRadius: 'var(--r-full)',
+            fontWeight: 600,
+            textDecoration: 'none',
+            fontSize: '1.1rem'
+          }}>
+            Browse Data
+          </Link>
+        </div>
+      </section>
+
+      {/* SOCIAL PROOF */}
+      <section style={{ borderTop: '1px solid #1e293b', borderBottom: '1px solid #1e293b', padding: 'var(--s-8) 0', background: '#020617' }}>
+         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+           <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: 'var(--s-6)' }}>TRUSTED BY STUDENTS FROM</p>
+           <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--s-12)', flexWrap: 'wrap', opacity: 0.5, filter: 'grayscale(100%)' }}>
+             {/* Text Placeholders for Logos */}
+             <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>WIUT</span>
+             <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>IUT</span>
+             <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>MDIST</span>
+             <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>AMITY</span>
+             <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>WEBSTER</span>
+           </div>
+         </div>
+      </section>
+
+      {/* FEATURE GRID */}
+      <section style={{ padding: 'var(--s-20) var(--s-4)', maxWidth: '1200px', margin: '0 auto' }}>
+        <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: 'var(--s-16)', fontFamily: 'var(--font-outfit)' }}>
+          Why Top Students Choose CareerOS
+        </h2>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--s-8)' }}>
+           {/* Card 1 */}
+           <div style={{ background: '#1e293b', padding: 'var(--s-8)', borderRadius: 'var(--r-xl)', border: '1px solid #334155' }}>
+             <div style={{ fontSize: '3rem', marginBottom: 'var(--s-4)' }}>⚡</div>
+             <h3 style={{ fontSize: '1.5rem', marginBottom: 'var(--s-3)' }}>AI Resume Tailoring</h3>
+             <p style={{ color: '#94a3b8', lineHeight: 1.6 }}>
+               Stop sending generic CVs. Our engine rewrites your bullet points to match the job description perfectly in seconds.
+             </p>
+           </div>
+           
+           {/* Card 2 */}
+           <div style={{ background: '#1e293b', padding: 'var(--s-8)', borderRadius: 'var(--r-xl)', border: '1px solid #334155' }}>
+              <div style={{ fontSize: '3rem', marginBottom: 'var(--s-4)' }}>🛡️</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: 'var(--s-3)' }}>100% Verified Jobs</h3>
+              <p style={{ color: '#94a3b8', lineHeight: 1.6 }}>
+                 We manually verify every employer&apos;s registration documents. Say goodbye to MLM schemes and Telegram scams.
+              </p>
+           </div>
+
+           {/* Card 3 */}
+           <div style={{ background: '#1e293b', padding: 'var(--s-8)', borderRadius: 'var(--r-xl)', border: '1px solid #334155' }}>
+              <div style={{ fontSize: '3rem', marginBottom: 'var(--s-4)' }}>🚀</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: 'var(--s-3)' }}>Application Tracker</h3>
+              <p style={{ color: '#94a3b8', lineHeight: 1.6 }}>
+                 Organize your job hunt like a pro. Track every application from &quot;Applied&quot; to &quot;Offer&quot; in one visual board.
+              </p>
+           </div>
+        </div>
+      </section>
+      
+      {/* FINAL CTA */}
+      <section style={{ textAlign: 'center', padding: 'var(--s-20) 0' }}>
+         <h2 style={{ fontSize: '2.5rem', marginBottom: 'var(--s-6)' }}>Ready to get hired?</h2>
+         <Link href="/resume/builder" style={{
+            background: 'white',
+            color: 'black',
+            padding: 'var(--s-4) var(--s-10)',
+            borderRadius: 'var(--r-full)',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontSize: '1.25rem'
+          }}>
+            Build Your Resume Now
+          </Link>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ borderTop: '1px solid #1e293b', padding: 'var(--s-10) 0', textAlign: 'center', color: '#64748b' }}>
+        <p>&copy; 2024 CareerOS. Built for Students in Central Asia.</p>
+      </footer>
+
     </div>
   );
 }
