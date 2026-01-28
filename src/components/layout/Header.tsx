@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Header({ title }: { title: string }) {
+export default function Header({ title, user }: { title: string, user?: any }) {
   return (
     <header style={{
       display: 'flex',
@@ -45,24 +45,46 @@ export default function Header({ title }: { title: string }) {
         {/* Divider */}
         <div style={{ width: '1px', height: '24px', background: 'var(--c-border)' }}></div>
 
-        {/* Auth Buttons (Visual for User Request) */}
-        <Link href="/login" style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--c-text-minor)' }}>
-            Log In
-        </Link>
-        <Link 
-            href="/signup" 
-            style={{ 
-                padding: '8px 16px', 
-                background: 'var(--c-trust-blue)', 
-                color: 'white', 
-                borderRadius: 'var(--r-full)', 
-                fontSize: '0.9rem', 
-                fontWeight: 600,
-                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
-            }}
-        >
-            Sign Up
-        </Link>
+        {/* Dynamic Auth Section */}
+        {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontSize: '0.9rem', color: 'var(--c-text-minor)' }}>
+                    {user.name}
+                </span>
+                <Link 
+                    href="/api/auth/signout" 
+                    style={{ 
+                        fontSize: '0.8rem', 
+                        color: '#EF4444', 
+                        border: '1px solid rgba(239, 68, 68, 0.2)',
+                        padding: '4px 10px',
+                        borderRadius: '6px'
+                    }}
+                >
+                    Log Out
+                </Link>
+            </div>
+        ) : (
+            <>
+                <Link href="/login" style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--c-text-minor)' }}>
+                    Log In
+                </Link>
+                <Link 
+                    href="/signup" 
+                    style={{ 
+                        padding: '8px 16px', 
+                        background: 'var(--c-trust-blue)', 
+                        color: 'white', 
+                        borderRadius: 'var(--r-full)', 
+                        fontSize: '0.9rem', 
+                        fontWeight: 600,
+                        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+                    }}
+                >
+                    Sign Up
+                </Link>
+            </>
+        )}
       </div>
     </header>
   );
