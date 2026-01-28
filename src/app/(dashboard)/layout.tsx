@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { label: '🚀 Job Market', href: '/jobs' },
   { label: '📋 Tracker', href: '/tracker' },
   { label: '📝 Resume Builder', href: '/resume/builder' },
+  { label: '✍️ Cover Letter', href: '/resume/cover-letter' },
   { label: '🧠 Learning', href: '/learning' },
   { label: '🌍 Community', href: '/community' },
 ];

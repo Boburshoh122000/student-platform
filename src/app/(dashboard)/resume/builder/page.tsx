@@ -15,7 +15,7 @@ export default function ResumeBuilderPage() {
   return (
     <div style={{ 
       display: 'grid', 
-      gridTemplateColumns: 'minmax(400px, 40%) 1fr', 
+      gridTemplateColumns: 'minmax(600px, 55%) 1fr', 
       height: '100vh', 
       overflow: 'hidden', // Page itself doesn't scroll, panes do
       background: 'var(--c-bg-main)'
@@ -32,26 +32,14 @@ export default function ResumeBuilderPage() {
           padding: 'var(--s-4) var(--s-6)', 
           borderBottom: '1px solid var(--c-border)',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: 'center',
           background: 'var(--c-bg-card)'
         }}>
-          <h1 style={{ fontSize: '1.25rem' }}>CV Builder</h1>
-          <button 
-            onClick={handlePrint}
-            style={{
-              background: 'var(--c-growth-violet)',
-              color: 'white',
-              padding: 'var(--s-2) var(--s-4)',
-              borderRadius: 'var(--r-md)',
-              fontWeight: 600
-            }}
-          >
-            Download PDF
-          </button>
+          <h1 style={{ fontSize: '1.25rem' }}>CV Builder & AI Assistant</h1>
         </header>
         
-        <ResumeForm data={resumeData} onChange={setResumeData} />
+        <ResumeForm data={resumeData} onChange={setResumeData} onGenerate={handlePrint} />
       </div>
 
       {/* RIGHT: PREVIEW (Print target) */}
