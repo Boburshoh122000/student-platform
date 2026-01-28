@@ -14,9 +14,7 @@
     "react-dom": "19.2.3",
     "next-auth": "beta",
     "@auth/prisma-adapter": "^2.0.0",
-    "@prisma/client": "^5.10.2",
-    "@supabase/supabase-js": "^2.39.0", 
-    "@supabase/ssr": "^0.1.0"
+    "@prisma/client": "^5.10.2"
   },
   "devDependencies": {
     "@types/node": "^20",
