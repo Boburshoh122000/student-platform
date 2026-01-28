@@ -1,15 +1,19 @@
 :root {
   /* Brand Colors */
   --c-trust-blue: #3B82F6;
-  --c-growth-violet: #7C3AED;
+  --c-growth-violet: #8B5CF6;
+  --c-accent-teal: #14B8A6;
   --c-scam-red: #EF4444;
 
-  /* Neutral / Dark Mode Base */
-  --c-bg-main: #0F172A;
-  --c-bg-card: #1E293B;
-  --c-border: #334155;
-  --c-text-major: #F8FAFC;
-  --c-text-minor: #94A3B8;
+  /* Dark Theme Palette (Slate) */
+  --c-bg-main: #020617; /* Deepest Navy */
+  --c-bg-page: #0F172A; /* Slate 900 */
+  --c-bg-card: #1E293B; /* Slate 800 */
+  --c-border: #334155;  /* Slate 700 */
+  
+  --c-text-major: #F1F5F9; /* Slate 100 */
+  --c-text-minor: #94A3B8; /* Slate 400 */
+  --c-text-muted: #64748B; /* Slate 500 */
 
   /* Spacing Scale */
   --s-1: 0.25rem;
@@ -24,6 +28,7 @@
   --r-sm: 0.375rem;
   --r-md: 0.5rem;
   --r-lg: 0.75rem;
+  --r-xl: 1rem;
   --r-full: 9999px;
 }
 
@@ -36,6 +41,10 @@
 
 body {
   background-color: var(--c-bg-main);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
   color: var(--c-text-major);
   font-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,8 +53,9 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-outfit), sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--c-text-major);
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -58,4 +68,19 @@ button {
   border: none;
   background: none;
   cursor: pointer;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-text-muted);
 }

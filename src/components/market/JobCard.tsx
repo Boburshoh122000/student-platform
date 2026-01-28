@@ -13,129 +13,161 @@ export default function JobCard({ job }: { job: Job }) {
   const isHighMatch = job.matchScore >= 80;
 
   const handleApplyClick = () => {
-    if (existingApp) return; // Already applied
+    if (existingApp) return; 
     setShowModal(true);
   };
 
   const executeApply = () => {
     addApplication(job.id, job.title, job.company, job.location);
-    addXP(50); // Gamification Reward
+    addXP(50);
     setShowModal(false);
   };
 
   return (
     <>
-      <div style={{
-        background: 'var(--c-bg-card)',
-        border: '1px solid var(--c-border)',
-        borderRadius: 'var(--r-lg)',
-        padding: 'var(--s-6)',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--s-4)',
-        position: 'relative',
-        transition: 'transform 0.1s ease',
-        cursor: 'pointer'
-      }}>
-        {/* HEADER: Title + Verification */}
+      <div 
+        className="job-card"
+        style={{
+          background: 'rgba(30, 41, 59, 0.6)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: 'var(--r-xl)',
+          padding: 'var(--s-6)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--s-4)',
+          position: 'relative',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          cursor: 'pointer',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+        }}
+        onMouseEnter={(e) => {
+           e.currentTarget.style.transform = 'translateY(-4px)';
+           e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)';
+           e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+        }}
+        onMouseLeave={(e) => {
+           e.currentTarget.style.transform = 'translateY(0)';
+           e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+           e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+        }}
+      >
+        {/* HEADER */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--s-2)' }}>
-                <h3 style={{ fontSize: '1.25rem', margin: 0 }}>{job.title}</h3>
-                {job.isVerified && (
-                  <span title="Verified Employer" style={{ color: '#F59E0B', fontSize: '1rem' }}>
-                     ✅ 
-                  </span>
-                )}
+          <div style={{ display: 'flex', gap: 'var(--s-4)' }}>
+             {/* Logo Placeholder */}
+             <div style={{ 
+                width: '48px', height: '48px', 
+                borderRadius: '12px', 
+                background: `linear-gradient(135deg, ${isHighMatch ? '#3B82F6' : '#64748B'}, #1E293B)`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '1.25rem', border: '1px solid rgba(255,255,255,0.1)'
+             }}>
+                {job.company.charAt(0)}
              </div>
              
-             <p style={{ color: 'var(--c-text-minor)', marginTop: 'var(--s-1)' }}>
-               {job.company} • {job.location}
-             </p>
+             <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--s-2)' }}>
+                    <h3 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 700 }}>{job.title}</h3>
+                    {job.isVerified && <span title="Verified" style={{ fontSize: '1rem' }}>✅</span>}
+                </div>
+                <p style={{ color: 'var(--c-text-minor)', fontSize: '0.9rem', marginTop: '2px' }}>
+                    {job.company}
+                </p>
+             </div>
           </div>
           
-          {/* Match Score Badge */}
           <div style={{
-            background: isHighMatch ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-            color: isHighMatch ? '#10B981' : '#EF4444',
-            padding: 'var(--s-1) var(--s-3)',
+            background: isHighMatch ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+            color: isHighMatch ? '#34D399' : '#94A3B8',
+            padding: '4px 12px',
             borderRadius: 'var(--r-full)',
             fontWeight: 600,
-            fontSize: '0.875rem'
+            fontSize: '0.875rem',
+            border: `1px solid ${isHighMatch ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255,255,255,0.05)'}`
           }}>
             {job.matchScore}% Match
           </div>
         </div>
 
-        {/* DETAILS: Tags & Salary */}
+        {/* METADATA PILLS */}
         <div style={{ display: 'flex', gap: 'var(--s-2)', flexWrap: 'wrap' }}>
-          <span style={{ 
-            background: 'rgba(59, 130, 246, 0.1)', 
-            color: 'var(--c-trust-blue)', 
-            padding: '2px 8px', 
-            borderRadius: '4px', 
-            fontSize: '0.8rem' 
-          }}>
-            {job.type}
-          </span>
-          {job.salaryRange && (
             <span style={{ 
-               background: 'rgba(255, 255, 255, 0.05)', 
-               color: 'var(--c-text-minor)', 
-               padding: '2px 8px', 
-               borderRadius: '4px', 
-               fontSize: '0.8rem' 
+                background: 'rgba(255, 255, 255, 0.03)', 
+                border: '1px solid rgba(255,255,255,0.05)',
+                color: 'var(--c-text-minor)', 
+                padding: '4px 10px', 
+                borderRadius: '6px', 
+                fontSize: '0.8rem' 
             }}>
-              💰 {job.salaryRange}
+                📍 {job.location}
             </span>
-          )}
+            <span style={{ 
+                background: 'rgba(59, 130, 246, 0.1)', 
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                color: '#60A5FA', 
+                padding: '4px 10px', 
+                borderRadius: '6px', 
+                fontSize: '0.8rem',
+                fontWeight: 500
+            }}>
+                {job.type}
+            </span>
+            {job.salaryRange && (
+                <span style={{ 
+                    background: 'rgba(16, 185, 129, 0.1)', 
+                    border: '1px solid rgba(16, 185, 129, 0.2)',
+                    color: '#34D399', 
+                    padding: '4px 10px', 
+                    borderRadius: '6px', 
+                    fontSize: '0.8rem',
+                    fontWeight: 500
+                }}>
+                    {job.salaryRange}
+                </span>
+            )}
         </div>
 
-        {/* FOOTER: Actions & Warnings */}
+        {/* FOOTER ACTION */}
         <div style={{ 
-          marginTop: 'auto', 
-          paddingTop: 'var(--s-4)', 
-          borderTop: '1px solid rgba(255,255,255,0.05)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+            marginTop: 'auto', 
+            paddingTop: 'var(--s-4)', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            borderTop: '1px solid rgba(255,255,255,0.05)'
         }}>
-          <small style={{ color: 'var(--c-text-minor)' }}>Posted {job.postedAt}</small>
-          
-          {job.scamRisk !== 'LOW' && (
-             <span style={{ color: 'var(--c-scam-red)', fontWeight: 'bold', fontSize: '0.8rem' }}>
-               ⚠️ Risk: {job.scamRisk}
-             </span>
-          )}
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--s-3)' }}>
-              <button 
-                onClick={(e) => { e.stopPropagation(); alert('Job reported to Safety Team. Thank you for keeping CareerOS safe!'); }}
-                style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--c-text-minor)', textDecoration: 'underline' }}
-              >
-                  🚩 Report
-              </button>
-              
-              <button 
+            <div style={{ display: 'flex', gap: 'var(--s-4)', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--c-text-muted)' }}>{job.postedAt}</span>
+                <button 
+                    onClick={(e) => { e.stopPropagation(); alert('Reported'); }}
+                    style={{ fontSize: '0.8rem', color: 'var(--c-text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                >
+                    🚩 <span style={{ textDecoration: 'underline' }}>Report</span>
+                </button>
+            </div>
+
+            <button 
                 onClick={handleApplyClick}
-            disabled={!!existingApp}
-            style={{
-              background: existingApp ? 'transparent' : 'var(--c-trust-blue)',
-              color: existingApp ? 'var(--c-text-minor)' : 'white',
-              border: existingApp ? '1px solid var(--c-border)' : 'none',
-              padding: 'var(--s-2) var(--s-4)',
-              borderRadius: 'var(--r-md)',
-              fontWeight: 600,
-              cursor: existingApp ? 'default' : 'pointer'
-            }}
-          >
-            {existingApp ? `Applied (${existingApp.status})` : 'Apply'}
-          </button>
+                disabled={!!existingApp}
+                style={{
+                   background: existingApp ? 'rgba(255,255,255,0.05)' : 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+                   color: existingApp ? 'var(--c-text-muted)' : 'white',
+                   padding: '10px 24px',
+                   borderRadius: 'var(--r-full)',
+                   fontWeight: 600,
+                   fontSize: '0.9rem',
+                   cursor: existingApp ? 'default' : 'pointer',
+                   boxShadow: existingApp ? 'none' : '0 4px 12px rgba(59, 130, 246, 0.4)',
+                   transition: 'opacity 0.2s',
+                   border: existingApp ? '1px solid rgba(255,255,255,0.05)' : 'none'
+                }}
+            >
+                {existingApp ? 'Applied' : 'Apply Now'}
+            </button>
         </div>
       </div>
-    </div>
 
-      {/* MODAL */}
       {showModal && (
         <TailoringModal 
           job={job}
